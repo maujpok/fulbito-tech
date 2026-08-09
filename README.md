@@ -39,7 +39,7 @@ mismos textos y fotos del onboarding (`l10n/app_es.arb`, `assets/images/welcome/
 ## 1. Configurar la lista de espera (Formspree)
 
 El formulario funciona sin backend. Por defecto, mientras no haya endpoint
-configurado, abre el cliente de correo del visitante hacia `fulbitoappok@gmail.com`.
+configurado, abre el cliente de correo del visitante hacia `hola@fulbito.tech`.
 Para guardar los correos automáticamente:
 
 1. Creá una cuenta en [formspree.io](https://formspree.io) y un formulario nuevo.
