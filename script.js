@@ -11,7 +11,7 @@
      Se ve así:  https://formspree.io/f/xxxxxxxx
      Mientras esté vacío, el formulario abre el cliente de correo como respaldo.
      ---------------------------------------------------------------------- */
-  var WAITLIST_ENDPOINT = '';
+  var WAITLIST_ENDPOINT = 'https://formspree.io/f/mnpappnn';
   var CONTACT_EMAIL = 'fulbitoappok@gmail.com';
 
   var MESSAGES = {
