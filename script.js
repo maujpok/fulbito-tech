@@ -12,7 +12,7 @@
      Mientras esté vacío, el formulario abre el cliente de correo como respaldo.
      ---------------------------------------------------------------------- */
   var WAITLIST_ENDPOINT = '';
-  var CONTACT_EMAIL = 'hola@fulbito.tech';
+  var CONTACT_EMAIL = 'fulbitoappok@gmail.com';
 
   var MESSAGES = {
     invalid: 'Revisá el correo: parece que le falta algo.',
