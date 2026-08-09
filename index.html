@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fulbito — Llevá tus partidos al próximo nivel</title>
+<meta name="description" content="Fulbito es la app para organizar tus picados: encontrá partido cerca tuyo, armá equipos equilibrados y llevá el historial de goles, victorias y ranking. Próximamente en App Store y Google Play.">
+<link rel="canonical" href="https://www.fulbito.tech/">
+<meta name="theme-color" content="#0F172A">
+<meta name="author" content="Fulbito">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fulbito">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://www.fulbito.tech/">
+<meta property="og:title" content="Fulbito — Llevá tus partidos al próximo nivel">
+<meta property="og:description" content="La app para organizar tus picados: encontrá partido, armá equipos equilibrados y llevá el ranking del grupo. Próximamente en iOS y Android.">
+<meta property="og:image" content="https://www.fulbito.tech/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fulbito — próximamente en App Store y Google Play">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fulbito — Llevá tus partidos al próximo nivel">
+<meta name="twitter:description" content="La app para organizar tus picados: encontrá partido, armá equipos equilibrados y llevá el ranking del grupo. Próximamente en iOS y Android.">
+<meta name="twitter:image" content="https://www.fulbito.tech/assets/img/og.jpg">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<!-- Marca que hay JS: sin esto las secciones con .reveal nunca se ocultan,
+     así el contenido siempre se ve aunque falle el script. -->
+<script>document.documentElement.classList.add('js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Fulbito",
+  "applicationCategory": "SportsApplication",
+  "operatingSystem": "iOS, Android",
+  "description": "App para organizar picados de fútbol: encontrá partido cerca tuyo, armá equipos equilibrados y llevá el historial de goles, victorias y ranking.",
+  "url": "https://www.fulbito.tech/",
+  "inLanguage": "es",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/PreOrder"
+  }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Fulbito — inicio">
+      <img src="/assets/logo.svg" alt="" width="40" height="40" class="brand-mark">
+      <span class="brand-name">Fulbito</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav class="nav" id="nav-menu" aria-label="Navegación principal">
+      <a href="#funciones">Funciones</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+      <a class="btn btn-primary btn-sm" href="#lista-de-espera">Avisame</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+
+      <div class="hero-copy">
+        <p class="pill"><span class="pill-dot" aria-hidden="true"></span> Próximamente en iOS y Android</p>
+
+        <h1>Llevá tus partidos<br><span class="hl">al próximo nivel</span></h1>
+
+        <p class="lede">
+          Fulbito es la app para organizar tus picados. Encontrá partido cerca tuyo,
+          armá equipos equilibrados en un toque y llevá el historial de goles,
+          victorias y ranking del grupo.
+        </p>
+
+        <form class="waitlist" id="waitlist-hero" novalidate>
+          <label class="sr-only" for="email-hero">Tu correo electrónico</label>
+          <div class="waitlist-row">
+            <input type="email" id="email-hero" name="email" inputmode="email" autocomplete="email"
+                   placeholder="tumail@ejemplo.com" required>
+            <button class="btn btn-primary" type="submit">Avisame cuando salga</button>
+          </div>
+          <p class="waitlist-note">Sin spam. Un solo mail, el día del lanzamiento.</p>
+          <p class="waitlist-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="stores" aria-label="Disponibilidad próximamente">
+          <span class="store-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.36 12.68c.02-2.24 1.83-3.32 1.91-3.37-1.04-1.52-2.66-1.73-3.24-1.75-1.38-.14-2.69.81-3.39.81-.7 0-1.78-.79-2.92-.77-1.5.02-2.88.87-3.65 2.21-1.56 2.7-.4 6.7 1.12 8.89.74 1.07 1.63 2.28 2.79 2.24 1.12-.05 1.54-.72 2.9-.72s1.74.72 2.92.7c1.21-.02 1.97-1.1 2.71-2.18.85-1.25 1.2-2.46 1.22-2.52-.03-.01-2.34-.9-2.37-3.54M14.2 5.98c.62-.75 1.03-1.79.92-2.83-.89.04-1.97.59-2.6 1.34-.57.66-1.07 1.72-.94 2.73.99.08 2-.5 2.62-1.24"/></svg>
+            <span><small>Próximamente en</small><strong>App Store</strong></span>
+          </span>
+          <span class="store-badge">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.61 1.81 13.79 12 3.61 22.19A1.5 1.5 0 0 1 3 20.99V3.01c0-.5.24-.94.61-1.2m10.89 10.89 2.3 2.3-10.94 6.34zm3.42-3.42 2.8 1.63c1.09.62 1.09 1.63 0 2.25l-2.8 1.62-2.55-2.55zM5.86 2.66l10.94 6.33-2.3 2.3z"/></svg>
+            <span><small>Próximamente en</small><strong>Google Play</strong></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Mockup del teléfono, hecho en HTML/CSS -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+
+            <div class="app-top">
+              <img src="/assets/logo.svg" alt="" width="28" height="28">
+              <div>
+                <p class="app-hi">Hola, Mauri</p>
+                <p class="app-sub">Tenés un picado hoy</p>
+              </div>
+            </div>
+
+            <div class="app-card app-card-hero">
+              <div class="app-card-head">
+                <span class="chip chip-green">Fútbol 5</span>
+                <span class="app-time">21:00</span>
+              </div>
+              <p class="app-title">Cancha La Bombonerita</p>
+              <p class="app-meta">Hoy · a 1,2 km · 9/10 jugadores</p>
+              <div class="avatars">
+                <span class="av av-1">MP</span>
+                <span class="av av-2">JD</span>
+                <span class="av av-3">LG</span>
+                <span class="av av-4">RS</span>
+                <span class="av av-more">+5</span>
+              </div>
+              <div class="app-btn">Sumarme al partido</div>
+            </div>
+
+            <div class="app-card">
+              <p class="app-card-label">Equipos armados</p>
+              <div class="teams">
+                <div class="team">
+                  <span class="team-dot team-a"></span>
+                  <div>
+                    <p class="team-name">Equipo A</p>
+                    <p class="team-line">ARQ · DEF · MED · DEL · DEL</p>
+                  </div>
+                  <span class="team-score">4</span>
+                </div>
+                <div class="team">
+                  <span class="team-dot team-b"></span>
+                  <div>
+                    <p class="team-name">Equipo B</p>
+                    <p class="team-line">ARQ · DEF · MED · MED · DEL</p>
+                  </div>
+                  <span class="team-score">3</span>
+                </div>
+              </div>
+              <div class="balance">
+                <span class="balance-fill"></span>
+              </div>
+              <p class="app-card-foot">Equilibrio 96% · según posición y nivel</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-card float-goals">
+          <strong>+128</strong>
+          <span>goles cargados</span>
+        </div>
+        <div class="float-card float-rank">
+          <strong>#1</strong>
+          <span>en tu ranking</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wrap">
+      <ul class="chips" aria-label="Tipos de cancha y posiciones">
+        <li>Fútbol 5</li>
+        <li>Fútbol 7</li>
+        <li>Fútbol 9</li>
+        <li>Fútbol 11</li>
+        <li class="chips-sep" aria-hidden="true">·</li>
+        <li>ARQ</li>
+        <li>DEF</li>
+        <li>MED</li>
+        <li>DEL</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FUNCIONES ============ -->
+  <section class="section" id="funciones">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">Funciones</p>
+        <h2>Todo lo que hace falta para que el picado salga</h2>
+        <p class="section-lede">
+          Menos grupos de chat, menos listas en papel y menos partidos que se caen a última hora.
+        </p>
+      </header>
+
+      <div class="features">
+
+        <article class="feature reveal">
+          <div class="feature-media">
+            <picture>
+              <source srcset="/assets/img/picado.webp" type="image/webp">
+              <img src="/assets/img/picado.jpg" width="1400" height="1129" loading="lazy" decoding="async"
+                   alt="Un grupo de jugadores mira un partido en el celular antes de entrar a la cancha.">
+            </picture>
+          </div>
+          <div class="feature-body">
+            <span class="feature-num">01</span>
+            <h3>Encontrá tu partido</h3>
+            <p>Sumate a picados cerca tuyo o armá el tuyo en segundos. Publicás cancha, día y cupos, y los que faltan se anotan solos.</p>
+            <ul class="ticks">
+              <li>Partidos abiertos cerca de tu ubicación</li>
+              <li>Confirmaciones y lista de espera automáticas</li>
+              <li>Avisos cuando falta gente o se libera un lugar</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="feature feature-flip reveal">
+          <div class="feature-media">
+            <picture>
+              <source srcset="/assets/img/equipos.webp" type="image/webp">
+              <img src="/assets/img/equipos.jpg" width="1100" height="887" loading="lazy" decoding="async"
+                   alt="Dos jugadores se saludan en la cancha antes de empezar a jugar.">
+            </picture>
+          </div>
+          <div class="feature-body">
+            <span class="feature-num">02</span>
+            <h3>Equipos sin vueltas</h3>
+            <p>La app arma equipos equilibrados según posición y nivel. Se terminó el “pares y nones” y el equipo que gana 8 a 1.</p>
+            <ul class="ticks">
+              <li>Balance automático por posición: ARQ, DEF, MED y DEL</li>
+              <li>Ajuste por nivel de cada jugador</li>
+              <li>Rearmá los equipos de nuevo con un toque</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="feature reveal">
+          <div class="feature-media">
+            <picture>
+              <source srcset="/assets/img/ranking.webp" type="image/webp">
+              <img src="/assets/img/ranking.jpg" width="1100" height="887" loading="lazy" decoding="async"
+                   alt="Un equipo festeja levantando la copa después de ganar.">
+            </picture>
+          </div>
+          <div class="feature-body">
+            <span class="feature-num">03</span>
+            <h3>Historial y ranking</h3>
+            <p>Registrá partidos, goles y victorias. Demostrá quién manda con estadísticas que se actualizan solas.</p>
+            <ul class="ticks">
+              <li>Tabla de posiciones de tu grupo</li>
+              <li>Goles, partidos jugados y racha de victorias</li>
+              <li>Historial completo de cada picado</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <blockquote class="quote reveal">
+        <p>“Nunca más se cancela un partido por falta de jugadores.”</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section class="section section-alt" id="como-funciona">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Del grupo de chat a la cancha, en tres pasos</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num">1</span>
+          <h3>Creá tu perfil de jugador</h3>
+          <p>Elegí en qué posición jugás (hasta dos) y en qué canchas: fútbol 5, 7, 9 u 11. Con eso la app ya sabe dónde ubicarte.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">2</span>
+          <h3>Armá o sumate a un picado</h3>
+          <p>Publicá el partido con cancha, horario y cupos, o sumate a uno abierto. Cada quien confirma desde su celular.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">3</span>
+          <h3>Jugá y cargá el resultado</h3>
+          <p>Al terminar cargás el marcador y los goles. El ranking del grupo se actualiza solo, hasta el próximo partido.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ LISTA DE ESPERA ============ -->
+  <section class="section cta-section" id="lista-de-espera">
+    <div class="wrap">
+      <div class="cta reveal">
+        <img src="/assets/logo.svg" alt="" width="72" height="72" class="cta-logo">
+        <h2>Sé de los primeros en jugar</h2>
+        <p>
+          Estamos terminando Fulbito para lanzarla en App Store y Google Play.
+          Dejanos tu mail y te avisamos apenas se pueda descargar.
+        </p>
+
+        <form class="waitlist waitlist-lg" id="waitlist-cta" novalidate>
+          <label class="sr-only" for="email-cta">Tu correo electrónico</label>
+          <div class="waitlist-row">
+            <input type="email" id="email-cta" name="email" inputmode="email" autocomplete="email"
+                   placeholder="tumail@ejemplo.com" required>
+            <button class="btn btn-primary" type="submit">Sumarme a la lista</button>
+          </div>
+          <p class="waitlist-note">Sin spam. Un solo mail, el día del lanzamiento.</p>
+          <p class="waitlist-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="wrap wrap-narrow">
+      <header class="section-head reveal">
+        <p class="eyebrow">Preguntas</p>
+        <h2>Lo que nos preguntan seguido</h2>
+      </header>
+
+      <div class="faq">
+        <details class="reveal">
+          <summary>¿Cuándo se puede descargar?</summary>
+          <p>Fulbito está en desarrollo y sale para iPhone y Android. Todavía no tenemos fecha pública: dejanos tu mail arriba y sos de los primeros en enterarte el día que esté en las tiendas.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Tiene costo?</summary>
+          <p>Vas a poder crear tu perfil, sumarte a picados, armar equipos y llevar el ranking sin pagar nada.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿En qué dispositivos funciona?</summary>
+          <p>En iPhone (App Store) y en Android (Google Play). Es una sola app, con la misma experiencia en los dos sistemas.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Sirve para fútbol 5, 7, 9 y 11?</summary>
+          <p>Sí. Elegís los tipos de cancha en los que jugás cuando creás tu perfil, y la app te muestra los partidos que te sirven.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Cómo arma los equipos?</summary>
+          <p>Toma la posición y el nivel de cada jugador anotado y reparte para que los dos equipos queden lo más parejos posible. Si no te convence, lo rearmás.</p>
+        </details>
+        <details class="reveal">
+          <summary>¿Qué hacen con mi mail?</summary>
+          <p>Lo usamos solo para avisarte del lanzamiento. No lo compartimos con nadie y podés pedirnos que lo borremos cuando quieras escribiéndonos a <a href="mailto:hola@fulbito.tech">hola@fulbito.tech</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="#top" aria-label="Fulbito — inicio">
+        <img src="/assets/logo.svg" alt="" width="36" height="36" class="brand-mark">
+        <span class="brand-name">Fulbito</span>
+      </a>
+      <p>Llevá tus partidos al próximo nivel.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Enlaces del pie">
+      <a href="#funciones">Funciones</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#lista-de-espera">Lista de espera</a>
+      <a href="mailto:hola@fulbito.tech">hola@fulbito.tech</a>
+    </nav>
+  </div>
+
+  <div class="wrap footer-legal">
+    <p>© <span id="year">2026</span> Fulbito. Todos los derechos reservados.</p>
+    <p>Próximamente en App Store y Google Play.</p>
+  </div>
+</footer>
+
+<script src="/script.js" defer></script>
+</body>
+</html>
