@@ -661,6 +661,7 @@ button, input { font: inherit; color: inherit; }
   margin: 0 auto;
   color: var(--text-soft);
 }
+.cta .btn { margin-top: clamp(26px, 4vw, 34px); }
 
 /* --------------------------------- FAQ ----------------------------------- */
 
