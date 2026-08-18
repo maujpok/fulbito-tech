@@ -46,8 +46,8 @@ verde `#16A34A`, ámbar `#FBBF24`, navy `#0F172A` y tipografía Manrope.
 8. **Cierre** — CTA final.
 9. **Preguntas**.
 
-Todos los CTA apuntan a `#capitanes` y llevan `data-cta` para poder medir cuál
-convierte mejor.
+Los CTA de acción apuntan a `#sumarme` (la tarjeta del formulario) y llevan
+`data-cta` para poder medir cuál convierte mejor.
 
 ---
 
@@ -67,13 +67,25 @@ var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnpappnn';
 Cuando `LEADS_ENDPOINT` tenga valor, los leads van a la planilla y Formspree
 queda **solo como respaldo**: se usa si Apps Script falla, para no perder el lead.
 
-### Conectar Google Sheets (recomendado)
+### Conectar Google Sheets
 
-**a)** Creá una planilla nueva en Google Sheets.
+El script es **independiente** (no vive dentro de la planilla): abre el libro por
+su ID. Así se puede crear y desplegar desde `script.google.com`, que es el único
+camino viable desde un celular.
 
-**b)** Andá a **Extensiones → Apps Script** y reemplazá todo el contenido por:
+**a)** Creá una planilla y copiá su **ID**, que es el tramo largo de la URL entre
+`/d/` y `/edit`:
+
+```
+https://docs.google.com/spreadsheets/d/1AbC...XyZ/edit
+                                        ^^^^^^^^^ este
+```
+
+**b)** Entrá a [script.google.com](https://script.google.com) → **Nuevo proyecto**
+y reemplazá todo el contenido por esto, con el ID pegado en la primera línea:
 
 ```js
+const SPREADSHEET_ID = 'PEGA_ACA_EL_ID';
 const SHEET_NAME = 'Leads';
 const AVISAR_A = 'hola@fulbito.tech'; // dejalo en '' si no querés el mail
 
@@ -84,13 +96,24 @@ const COLUMNAS = [
   'referrer', 'pagina'
 ];
 
+function json(dato) {
+  return ContentService
+    .createTextOutput(JSON.stringify(dato))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function hoja() {
+  const libro = SpreadsheetApp.openById(SPREADSHEET_ID);
+  return libro.getSheetByName(SHEET_NAME) || libro.insertSheet(SHEET_NAME);
+}
+
+// Recibe cada lead de la landing y lo agrega como fila.
 function doPost(e) {
   const lead = JSON.parse(e.postData.contents);
-  const libro = SpreadsheetApp.getActiveSpreadsheet();
-  const hoja = libro.getSheetByName(SHEET_NAME) || libro.insertSheet(SHEET_NAME);
+  const h = hoja();
 
-  if (hoja.getLastRow() === 0) hoja.appendRow(COLUMNAS);
-  hoja.appendRow(COLUMNAS.map(function (c) { return lead[c] || ''; }));
+  if (h.getLastRow() === 0) h.appendRow(COLUMNAS);
+  h.appendRow(COLUMNAS.map(function (c) { return lead[c] || ''; }));
 
   if (AVISAR_A) {
     MailApp.sendEmail(
@@ -100,9 +123,21 @@ function doPost(e) {
     );
   }
 
-  return ContentService
-    .createTextOutput(JSON.stringify({ ok: true }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return json({ ok: true });
+}
+
+// Cuenta los capitanes reales, para el contador de la sección Comunidad.
+function doGet() {
+  const h = hoja();
+  if (h.getLastRow() < 2) return json({ capitanes: 0 });
+
+  const col = COLUMNAS.indexOf('organiza') + 1;
+  const valores = h.getRange(2, col, h.getLastRow() - 1, 1).getValues();
+  const capitanes = valores.filter(function (fila) {
+    return fila[0] && fila[0] !== 'no';
+  }).length;
+
+  return json({ capitanes: capitanes });
 }
 ```
 
@@ -113,17 +148,29 @@ function doPost(e) {
 | Ejecutar como | Yo (tu cuenta) |
 | Quién tiene acceso | **Cualquier persona** |
 
-La primera vez te va a pedir autorizar los permisos. Es normal: el script
-escribe en *tu* planilla y manda mail desde *tu* cuenta.
+La primera vez pide autorizar permisos y aparece una pantalla de "Google no
+verificó esta app": entrá en *Configuración avanzada → Ir a (proyecto)*. Es
+normal, el script es tuyo y solo toca tu planilla y tu correo.
 
-**d)** Copiá la URL que termina en `/exec` y pegala en `LEADS_ENDPOINT`. Un
-commit y queda desplegado.
+**d)** Copiá la URL que termina en `/exec` y pegala en `LEADS_ENDPOINT`.
+
+> **Cada vez que edites el código hay que volver a implementar.** Guardar no
+> alcanza: en *Implementar → Administrar implementaciones*, editá la
+> implementación y elegí **Versión: nueva**. Si no, la URL sigue sirviendo el
+> código viejo.
 
 > **Sobre "Cualquier persona":** es obligatorio para que la landing pueda
 > escribir sin login. Significa que la URL es pública y alguien que la encuentre
 > podría mandar filas basura. El formulario ya tiene un campo trampa que filtra
 > bots comunes, pero no es una defensa fuerte. Si algún día aparece basura, el
 > paso siguiente es validar un token compartido dentro de `doPost`.
+
+### Desde el iPhone
+
+Se puede, pero el editor de Apps Script no existe en la app de Google Sheets:
+hay que usar Safari con **"Solicitar sitio web para computadora"** (menú `aA` a
+la izquierda de la barra de direcciones) en `script.google.com`. Crear la
+planilla sí se puede desde la app de Sheets.
 
 ---
 
