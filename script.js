@@ -582,6 +582,53 @@
       });
   }
 
+  /* --------------------------- llegada con hash -------------------------
+     Un link compartido con #sumarme tiene que caer bien igual: reubicamos el
+     destino una vez cargado todo, para que ningún reacomodo lo deje tapado
+     por el header.
+     ===================================================================== */
+
+  function initHashLanding() {
+    if (!window.location.hash) return;
+
+    var target;
+    try {
+      target = document.querySelector(window.location.hash);
+    } catch (err) {
+      return;
+    }
+    if (!target) return;
+
+    window.addEventListener('load', function () {
+      target.scrollIntoView({ block: 'start' });
+    });
+  }
+
+  /* ---------------------------- scroll interno --------------------------
+     Los enlaces internos hacen scroll sin dejar el hash en la URL: al
+     refrescar, la página vuelve a empezar arriba en vez de saltar al ancla.
+     El "saltar al contenido" queda nativo, porque ahí el hash es lo que
+     mueve el foco del teclado.
+     ===================================================================== */
+
+  function initAnchorScroll() {
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('a[href^="#"]');
+      if (!link || link.classList.contains('skip-link')) return;
+
+      var href = link.getAttribute('href');
+      if (href.length < 2) return;
+
+      var target = document.querySelector(href);
+      if (!target) return;
+
+      event.preventDefault();
+
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+
   /* --------------------------- CTA de campaña --------------------------- */
 
   function initCtaTracking() {
@@ -599,6 +646,8 @@
     initHeader();
     initReveal();
     initStickyCta();
+    initAnchorScroll();
+    initHashLanding();
     initCtaTracking();
     initLeadForm();
     initProof();

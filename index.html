@@ -33,7 +33,11 @@
 <link rel="stylesheet" href="/styles.css">
 <!-- Marca que hay JS: sin esto las secciones con .reveal nunca se ocultan,
      así el contenido siempre se ve aunque falle el script. -->
-<script>document.documentElement.classList.add('js');</script>
+<script>
+  document.documentElement.classList.add('js');
+  // Al refrescar, la página arranca arriba en vez de restaurar el scroll previo.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+</script>
 
 <script type="application/ld+json">
 {
