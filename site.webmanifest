@@ -1,7 +1,7 @@
 {
   "name": "Fulbito",
   "short_name": "Fulbito",
-  "description": "La app para organizar tus picados: encontrá partido, armá equipos equilibrados y llevá el ranking del grupo.",
+  "description": "La app para organizar tu grupo de fútbol: partidos, confirmaciones, equipos e historial, sin el caos de WhatsApp.",
   "lang": "es",
   "start_url": "/",
   "scope": "/",
