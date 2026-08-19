@@ -7,6 +7,14 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0F172A">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<script>
+  // GitHub Pages no puede servir rutas dinámicas: /invite/{token} cae acá.
+  // Lo mandamos a la página de invitación conservando el token.
+  (function () {
+    var m = location.pathname.match(/^\/invite\/([^\/?#]+)\/?$/);
+    if (m) location.replace('/invite/?t=' + m[1] + location.search.replace('?', '&'));
+  })();
+</script>
 <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <style>

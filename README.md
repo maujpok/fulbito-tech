@@ -22,6 +22,8 @@ verde `#16A34A`, ámbar `#FBBF24`, navy `#0F172A` y tipografía Manrope.
 ├── 404.html                # página de error
 ├── styles.css              # estilos (incluye @font-face de Manrope)
 ├── script.js               # formulario, scoring, analítica  ← configurar acá
+├── invite/                 # página de invitación /invite/{token}
+├── scripts/build-qa.sh     # genera el sitio de qa.fulbito.tech
 ├── data/comunidad.json     # números reales de la campaña (ver más abajo)
 ├── CNAME                   # dominio propio: www.fulbito.tech
 ├── .nojekyll               # evita que Pages procese el sitio con Jekyll
@@ -276,6 +278,108 @@ de Gmail. Los registros de `send.fulbito.tech` son de Resend y no se tocan.
 
 ---
 
+## 6. Página de invitación
+
+Es la primera pantalla que ve alguien a quien invitaron a un grupo. Vive en
+`invite/` con su propia hoja de estilos, para que cargue lo mínimo.
+
+```
+invite/
+├── index.html    # los tres estados: cargando, invitación válida, link roto
+├── invite.css    # tokens + estilos propios (no depende de styles.css)
+└── invite.js     # lee el token, resuelve la invitación y abre la app
+```
+
+### Formatos de link que entiende
+
+| Formato | Estado HTTP | Vista previa en WhatsApp |
+| --- | --- | --- |
+| `/invite/?t={token}` | **200** | sí |
+| `/invite/#{token}` | **200** | sí |
+| `/invite/{token}` | **404** y redirige | **no** |
+
+**GitHub Pages no sabe servir rutas dinámicas.** Un pedido a `/invite/{token}`
+devuelve 404; ese 404 es nuestro `404.html`, que detecta la ruta y redirige a
+`/invite/?t={token}`. Para la persona el resultado es idéntico, pero **el primer
+pedido responde 404 y los previsualizadores de WhatsApp, Instagram y Telegram no
+muestran tarjeta.** Para un link que se comparte justamente por WhatsApp, eso
+importa.
+
+Por eso: **conviene que la API emita los links con `?t=`**. El formato con la
+ruta queda funcionando igual, para lo que ya esté circulando. La otra salida es
+mover el hosting a una plataforma con reescrituras (Cloudflare Pages, Netlify),
+donde `/invite/{token}` respondería 200 directamente.
+
+### Datos mockeados
+
+Hoy no hay API: `invite.js` arma los datos a partir del token, así cada link
+muestra un grupo distinto y se puede probar en QA. Cuando la API exista, se
+completa `INVITE_API` y se espera:
+
+```
+GET {api}/invites/{token}
+200 → { grupo, anfitrion, modalidad, jugadores,
+         proximoPartido: { cuando, donde } }
+404 → invitación inexistente o vencida
+```
+
+### Abrir la app
+
+El botón usa el esquema propio que la app ya registra en iOS y Android:
+
+```
+fulbitoapp://invite?token={token}
+```
+
+Si a los 1,5 segundos la página sigue visible, asumimos que la app no está
+instalada y mostramos las tiendas. El token se guarda en `localStorage`
+(`fulbito:invite`) para que la app lo levante si se instala después.
+
+> **Pendiente del lado de la app:** `DeepLinkHandler` hoy solo atiende
+> `reset-password`; hay que agregarle el caso `invite`. Y para que el link
+> `https://` abra la app directamente (Universal Links / App Links) faltan el
+> `apple-app-site-association` y el `assetlinks.json` en `/.well-known/`, más
+> los entitlements en cada plataforma. Los identificadores son
+> `com.maujpokdev.sportTeamManager` (iOS) y `com.maujpokdev.sport_team_manager`
+> (Android).
+
+---
+
+## 7. Entorno de QA
+
+QA vive en **otro repositorio** (`maujpok/fulbito-qa`) porque GitHub Pages admite
+un solo dominio propio por sitio. Para no mantener dos copias a mano, el
+contenido se genera desde este repo:
+
+```bash
+./scripts/build-qa.sh          # deja el sitio de QA en ./dist-qa
+```
+
+El script copia todo y aplica las diferencias de QA:
+
+- `CNAME` con `qa.fulbito.tech`
+- `robots.txt` con `Disallow: /` y sin `sitemap.xml`
+- `noindex, nofollow` en el HTML, porque robots.txt no alcanza si alguien enlaza
+  la página
+- canonical apuntando a `qa.fulbito.tech` y no a producción
+- Formspree desactivado, para que las pruebas no ensucien los leads reales
+
+Publicar:
+
+```bash
+cd dist-qa
+git init -b main && git add -A && git commit -m "deploy qa"
+git remote add origin https://github.com/maujpok/fulbito-qa
+git push -u --force origin main
+```
+
+En el repo de QA: **Settings → Pages → Source: GitHub Actions**, y **Custom
+domain: `qa.fulbito.tech`**. En el DNS, un `CNAME` de `qa` a `maujpok.github.io`.
+GitHub emite el certificado solo, así que HTTPS queda válido igual que en
+producción.
+
+---
+
 ## Desarrollo local
 
 No hay build ni dependencias. Las rutas son absolutas, así que hay que servir la
@@ -297,6 +401,11 @@ python3 -m http.server 8080
 - **El endpoint de Apps Script es público** (ver la nota de la sección 1).
 - **No hay analítica de terceros conectada**: los eventos existen y esperan en
   `dataLayer`.
+- **La API de invitaciones no existe**: `invite/` usa datos mockeados.
+- **`/invite/{token}` responde 404 antes de redirigir**, así que ese formato no
+  genera vista previa en WhatsApp. Ver sección 6.
+- **La app todavía no atiende deep links de invitación** ni tiene Universal
+  Links configurados.
 
 ## Cuando la app salga
 
