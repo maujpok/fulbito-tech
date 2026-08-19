@@ -93,7 +93,7 @@ const AVISAR_A = 'hola@fulbito.tech'; // dejalo en '' si no querés el mail
 
 const COLUMNAS = [
   'fecha', 'nombre', 'contacto', 'ciudad', 'organiza', 'integrantes',
-  'frecuencia', 'modalidad', 'tipo', 'score', 'segmento',
+  'frecuencia', 'tipo', 'score', 'segmento',
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
   'referrer', 'pagina'
 ];
@@ -318,7 +318,7 @@ completa `INVITE_API` y se espera:
 
 ```
 GET {api}/invites/{token}
-200 → { grupo, anfitrion, modalidad, jugadores,
+200 → { grupo, anfitrion, jugadores,
          proximoPartido: { cuando, donde } }
 404 → invitación inexistente o vencida
 ```

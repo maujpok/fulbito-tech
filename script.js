@@ -118,13 +118,6 @@
     return checked ? checked.value : '';
   }
 
-  function valuesOf(form, name) {
-    return Array.prototype.map.call(
-      form.querySelectorAll('[name="' + name + '"]:checked'),
-      function (input) { return input.value; }
-    );
-  }
-
   function looksLikePhone(value) {
     return value.replace(/[^0-9]/g, '').length >= 8;
   }
@@ -258,13 +251,6 @@
         }
       });
 
-      var modalidad = form.querySelector('[data-name="modalidad"]');
-      clearError(modalidad);
-      if (valuesOf(form, 'modalidad').length === 0) {
-        showError(modalidad, 'Marcá al menos una modalidad.');
-        ok = false;
-      }
-
       return ok;
     }
 
@@ -278,7 +264,6 @@
         organiza: valueOf(form, 'organiza'),
         integrantes: valueOf(form, 'integrantes'),
         frecuencia: valueOf(form, 'frecuencia'),
-        modalidad: valuesOf(form, 'modalidad').join(', '),
         tipo: valueOf(form, 'tipo'),
         referrer: document.referrer || '',
         pagina: window.location.pathname + window.location.search,

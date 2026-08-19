@@ -22,7 +22,7 @@
 
   // Base de la API que resuelve invitaciones. Vacío = datos mockeados.
   // Se espera: GET {api}/invites/{token}
-  //   200 -> { grupo, anfitrion, modalidad, jugadores, proximoPartido: { cuando, donde } }
+  //   200 -> { grupo, anfitrion, jugadores, proximoPartido: { cuando, donde } }
   //   404 -> invitación inexistente o vencida
   var INVITE_API = '';
 
@@ -79,17 +79,17 @@
   var GRUPOS_MOCK = [
     {
       grupo: 'Los Pibes del Miércoles', anfitrion: 'Nico',
-      modalidad: 'Fútbol 9', jugadores: 28,
+      jugadores: 28,
       proximoPartido: { cuando: 'Miércoles 21:00', donde: 'Complejo El Nido · Cancha 2' }
     },
     {
       grupo: 'Fulbito de los Jueves', anfitrion: 'Fede',
-      modalidad: 'Fútbol 5', jugadores: 14,
+      jugadores: 14,
       proximoPartido: { cuando: 'Jueves 20:30', donde: 'La Bombonerita · Cancha 1' }
     },
     {
       grupo: 'Los Cuervos FC', anfitrion: 'Seba',
-      modalidad: 'Fútbol 11', jugadores: 34,
+      jugadores: 34,
       proximoPartido: { cuando: 'Sábado 16:00', donde: 'Club Atlético · Cancha principal' }
     }
   ];
@@ -154,7 +154,7 @@
 
     var meta = document.getElementById('inv-meta');
     meta.textContent = '';
-    [datos.modalidad, datos.jugadores ? datos.jugadores + ' jugadores' : '']
+    [datos.jugadores ? datos.jugadores + ' jugadores' : '']
       .filter(Boolean)
       .forEach(function (texto) {
         var li = document.createElement('li');
