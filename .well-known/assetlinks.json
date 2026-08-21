@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.maudevarg.fulbito",
+      "sha256_cert_fingerprints": [
+        "C8:28:3D:1B:7F:37:DB:2E:75:80:F6:96:D5:14:E2:A7:7F:6D:CC:43:AF:49:E3:49:F5:FC:E1:C0:F5:C1:A6:5F"
+      ]
+    }
+  }
+]
