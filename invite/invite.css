@@ -275,6 +275,11 @@ button { font: inherit; color: inherit; }
   .store { justify-content: center; }
 }
 
+/* En pantallas muy angostas el eyebrow se partía en dos líneas */
+@media (max-width: 340px) {
+  .eyebrow { font-size: .68rem; letter-spacing: .1em; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important;
